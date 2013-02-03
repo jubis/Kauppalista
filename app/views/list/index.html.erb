@@ -1,0 +1,23 @@
+<h1>Items, <%= @items.length %></h1>
+<ul id="items">
+<% @items.each do |item| %>
+	<li data-id="<%= item.id %>">
+		<input class="check" type="checkbox">
+		<%= item.name %><%= item.amount.strip != "" ? ', ' + item.amount : '' %>
+	</li>
+<% end %>
+</ul>
+
+<input id="add-new" type="button" value="Add">
+<input id="remove-checked" type="button" value="Remove checked">
+
+<div class="form" id="form" style="display:none">
+<%= form_for @item, :url => url_for( :controller => 'item', :action => 'save' ) do |item_form| %>
+
+	<%= item_form.hidden_field :user_id, :value => 1 %>
+		<%= item_form.text_field :name, :placeholder => 'name' %>
+		<%= item_form.text_field :amount, :placeholder => 'amount' %>
+		<%= item_form.submit 'Save', :id => 'save' %>
+
+<% end %>
+</div>
