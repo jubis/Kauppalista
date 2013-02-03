@@ -1,9 +1,14 @@
 Kauppalista::Application.routes.draw do
+  match "user" => "user#index"
+  get "user/index"
+  get "user/create"
+
+
   post "item/save"
   get "item/create"
   delete "item/delete"
 
-  get "list/index"
+  match ":user" => "list#index"
 
   root :to => 'list#index'
   # The priority is based upon order of creation:
