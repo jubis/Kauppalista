@@ -4,11 +4,23 @@ class ListController < ApplicationController
   	user = User.where( :username => params[ :user ] ).first
   	if user != nil
   		@items = user.items
-  		@user_id = user.id
+  		@user = user
   	else
   		render :text => 'invalid user'
   	end
 
   	@item = Item.new
+  end
+
+  def list
+  	@items
+  	user = User.where( :username => params[ :user ] ).first
+  	if user != nil
+  		@items = user.items
+  		@user = user
+  		render :partial => 'list/list'
+  	else
+  		render :text => 'invalid user'
+  	end
   end
 end

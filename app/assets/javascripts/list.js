@@ -16,15 +16,20 @@ $(document).ready( function () {
 		removeChecked();
 	} );
 
+
+	setChecking();
+
+	
+} );
+
+function setChecking() {
 	$( '.check' ).click( function() {
 		checkItem( this );
 	} );
 	$( '.check' ).each( function() {
 		checkItem( this );
 	} );
-
-	
-} );
+}
 
 function createNewForm() {
 	lastForm = $( '#form' ).clone().show().attr( 'id', 'form-new' );
@@ -35,6 +40,16 @@ function createNewForm() {
 	} );
 
 	enableAddButton( false );
+}
+
+function reloadList() {
+	$.ajax({
+		url: 'list/list/?user=' + $( '#list' ).attr( 'data-user' ),
+		type: 'GET'
+	}).done( function( response ) {
+		$( '#list' ).html( response );
+		setChecking();
+	} );
 }
 
 function submitForm( event ) {
@@ -56,7 +71,7 @@ function submitForm( event ) {
 
 	enableAddButton( true );
 
-	window.location.reload();
+	reloadList();
 	return false;
 }
 
@@ -69,7 +84,7 @@ function removeChecked() {
 			data: { id: $(this).attr( 'data-id' ) } 
 		});
 	} );
-	window.location.reload();
+	reloadList();
 }
 
 function checkItem( elem ) {

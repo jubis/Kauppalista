@@ -10,6 +10,8 @@ Kauppalista::Application.routes.draw do
 
   match ":user" => "list#index"
 
+  get 'list/list'
+
   root :to => 'list#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
