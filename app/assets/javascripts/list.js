@@ -58,20 +58,19 @@ function submitForm( event ) {
 
 	var data = new Object();
 	$( '#form-new input' ).each( function() {
-		console.log( $(this).attr( 'name' ) );
 		data[ $(this).attr( 'name' ) ] = $(this).val();
 	} );
-	console.log( data );
 
-	$.ajax({ url: form.attr( 'action' ),
-			 type: 'POST',
-			 async: false, 
-			 data: data });
-	lastForm.remove();
+	$.ajax({ 
+		url: form.attr( 'action' ),
+		type: 'POST', 
+		data: data 
+	}).done( function() {
+		lastForm.remove();
+		enableAddButton( true );
+		reloadList();
+	 } );
 
-	enableAddButton( true );
-
-	reloadList();
 	return false;
 }
 
@@ -80,11 +79,12 @@ function removeChecked() {
 		$.ajax({ 
 			url: 'item/delete',
 			type: 'DELETE',
-			async: false,
 			data: { id: $(this).attr( 'data-id' ) } 
+		}).done( function() {
+			reloadList();
 		});
 	} );
-	reloadList();
+	
 }
 
 function checkItem( elem ) {
