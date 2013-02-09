@@ -61,6 +61,8 @@ function submitForm( event ) {
 		data[ $(this).attr( 'name' ) ] = $(this).val();
 	} );
 
+	//TODO: set "loading..." message
+	$( '#status' ).text( 'Adding...' );
 	$.ajax({ 
 		url: form.attr( 'action' ),
 		type: 'POST', 
@@ -69,19 +71,24 @@ function submitForm( event ) {
 		lastForm.remove();
 		enableAddButton( true );
 		reloadList();
+		$( '#status' ).text( ' ' );
 	 } );
 
 	return false;
 }
 
 function removeChecked() {
+	//TODO: set "loading..." message
+
 	$( 'ul#items li.checked' ).each( function() {
+		$( '#status' ).text( 'Removing...' );
 		$.ajax({ 
 			url: 'item/delete',
 			type: 'DELETE',
 			data: { id: $(this).attr( 'data-id' ) } 
 		}).done( function() {
 			reloadList();
+			$( '#status' ).text( ' ' );
 		});
 	} );
 	

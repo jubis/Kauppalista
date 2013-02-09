@@ -23,4 +23,8 @@ class ListController < ApplicationController
   		render :text => 'invalid user'
   	end
   end
+
+  def form
+  	
+  end
 end
