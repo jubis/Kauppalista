@@ -10,7 +10,10 @@ class ItemController < ApplicationController
   	item = Item.new(params[ :item ])
   	if item.save
   		render :text => "saved succesfully"
+  	else
+  		render :text => "saving failed"
   	end
+
   end
 
   def delete
