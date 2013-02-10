@@ -1,30 +1,24 @@
 class ListController < ApplicationController
-  def index
-  	@items
-  	user = User.where( :username => params[ :user ] ).first
-  	if user != nil
-  		@items = user.items
-  		@user = user
-  	else
-  		render :text => 'invalid user'
-  	end
+  before_filter :load_user
 
-  	@item = Item.new
+  def load_user
+  	@user = User.where( :username => params[ :user ] ).first
+  end
+
+  def index
   end
 
   def list
-  	@items
-  	user = User.where( :username => params[ :user ] ).first
-  	if user != nil
-  		@items = user.items
-  		@user = user
+  	if @user
+  		@items = @user.items
   		render :partial => 'list/list'
   	else
-  		render :text => 'invalid user'
+  		render :text => "invalid user"
   	end
   end
 
   def form
-  	
+  	@item = Item.new
+  	render :partial => 'list/form'
   end
 end

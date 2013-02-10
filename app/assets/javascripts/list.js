@@ -5,12 +5,7 @@
 var lastForm;
 $(document).ready( function () {
 	
-	$( '#add-new' ).click( function() {
-		console.log( $( '#form-new' ).is( 'div' ) );
-		if( !$( '#form-new' ).is( 'div' ) ) {
-			createNewForm();	
-		}
-	} );
+	
 
 	$( '#remove-checked' ).click( function() {
 		removeChecked();
@@ -18,9 +13,19 @@ $(document).ready( function () {
 
 
 	setChecking();
+	setFormLoading();
 
+	reloadList();
 	
 } );
+
+function setFormLoading() {
+	$( '#add-new' ).click( function() {
+		if( !$( '#form' ).children.length == 0 ) {
+			createNewForm();	
+		}
+	} );
+}
 
 function setChecking() {
 	$( '.check' ).click( function() {
@@ -32,14 +37,16 @@ function setChecking() {
 }
 
 function createNewForm() {
-	lastForm = $( '#form' ).clone().show().attr( 'id', 'form-new' );
-	lastForm.appendTo('#wrapper');
-
-	lastForm.submit( function( event ) {
-		submitForm( event );
+	$.ajax({
+		url: 'list/form/?user=' + $( '#list' ).attr( 'data-user' ),
+		type: 'GET'
+	}).done( function( response ) {
+		$( '#form' ).html( response );
+		$( '#form form' ).submit( function( event ) {
+			submitForm( event );
+		} );
+		enableAddButton( false );
 	} );
-
-	enableAddButton( false );
 }
 
 function reloadList() {
@@ -54,10 +61,10 @@ function reloadList() {
 
 function submitForm( event ) {
 	event.preventDefault();
-	var form = $( '#form-new form' );
+	var form = $( '#form form' );
 
 	var data = new Object();
-	$( '#form-new input' ).each( function() {
+	$( '#form input' ).each( function() {
 		data[ $(this).attr( 'name' ) ] = $(this).val();
 	} );
 
@@ -68,10 +75,10 @@ function submitForm( event ) {
 		type: 'POST', 
 		data: data 
 	}).done( function() {
-		lastForm.remove();
+		form.remove();
 		enableAddButton( true );
-		reloadList();
 		$( '#status' ).text( ' ' );
+		reloadList();
 	 } );
 
 	return false;

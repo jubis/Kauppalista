@@ -9,8 +9,8 @@ class ItemController < ApplicationController
   def save
   	item = Item.new(params[ :item ])
   	if item.save
+  		render :text => "saved succesfully"
   	end
-  	redirect_to ''
   end
 
   def delete

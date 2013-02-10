@@ -1,19 +1,10 @@
 <h1>Items</h1>
 <div id="list" data-user="<%= @user.username %>">
-	<%= render 'list/list' %>
 </div>
 
 <div id="status">&nbsp;</div>
 <input id="add-new" type="button" value="Add">
 <input id="remove-checked" type="button" value="Remove checked">
 
-<div class="form" id="form" style="display:none">
-	<%= form_for @item, :url => url_for( :controller => 'item', :action => 'save' ) do |item_form| %>
-
-		<%= item_form.hidden_field :user_id, :value => @user.id %>
-		<%= item_form.text_field :name, :placeholder => 'name' %>
-		<%= item_form.text_field :amount, :placeholder => 'amount' %>
-		<%= item_form.submit 'Save', :id => 'save' %>
-
-	<% end %>
+<div class="form" id="form">
 </div>
