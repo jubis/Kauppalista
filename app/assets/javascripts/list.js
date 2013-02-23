@@ -102,10 +102,13 @@ function removeChecked() {
 }
 
 function checkItem( elem ) {
+	li = $( elem ).parent();
 	if( $( elem ).is( ':checked' ) ) {
-		$( elem ).parent().addClass( 'checked' );
+		li.addClass( 'checked' );
+		li.attr( 'data-checked', 'true' );
 	} else {
-		$( elem ).parent().removeClass( 'checked' );
+		li.removeClass( 'checked' );
+		li.attr( 'data-checked', 'false' );
 	}
 }
 

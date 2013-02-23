@@ -7,6 +7,7 @@ Kauppalista::Application.routes.draw do
   post "item/save"
   get "item/create"
   delete "item/delete"
+  get "item/index"
 
   match ":user" => "list#index"
 

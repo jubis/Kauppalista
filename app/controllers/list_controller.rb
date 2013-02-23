@@ -11,7 +11,10 @@ class ListController < ApplicationController
   def list
   	if @user
   		@items = @user.items
-  		render :partial => 'list/list'
+      respond_to do |format| 
+        format.html { render :partial => 'list/list' }
+        format.xml { render :xml => @items }
+      end
   	else
   		render :text => "invalid user"
   	end
