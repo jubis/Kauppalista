@@ -16,7 +16,10 @@ class ListController < ApplicationController
         format.xml { render :xml => @items }
       end
   	else
-  		render :text => "invalid user"
+      respond_to do |format| 
+        format.html { render :text => "invalid user" }
+        format.xml { render :xml => "<error>invalid user</error>" }
+      end
   	end
   end
 
