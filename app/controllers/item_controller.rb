@@ -14,7 +14,7 @@ class ItemController < ApplicationController
   	if item.save
   		render :text => "saved succesfully"
   	else
-  		render :text => "saving failed"
+  		render :text => "saving failed " + params[ :item ].to_s
   	end
 
   end
