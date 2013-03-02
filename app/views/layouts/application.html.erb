@@ -10,6 +10,8 @@
 <body>
 
 <div id="wrapper">
+	<div class="notice"><%= flash[ :notice ] %></div>
+	<div class="error"><%= flash[ :error ] %></div>
 	<%= yield %>
 </div>
 

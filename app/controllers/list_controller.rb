@@ -2,10 +2,13 @@ class ListController < ApplicationController
   before_filter :load_user
 
   def load_user
-  	@user = User.where( :username => params[ :user ] ).first
+  	@user = User.where( :email => params[ :user ] ).first
   end
 
   def index
+    if !@user
+      @error = "Invalid user"
+    end 
   end
 
   def list

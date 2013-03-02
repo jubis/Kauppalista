@@ -1,0 +1,17 @@
+<h1>Create new item</h1>
+
+<%= form_for @item, :url => url_for( :controller => 'item', :action => 'create' ) do |item_form| %>
+	<%= item_form.hidden_field :user_id, :value => 1 %>
+	<div>
+		<%= item_form.label :name, 'Item' %>
+		<%= item_form.text_field :name %>
+	</div>
+	<div>
+		<%= item_form.label :amount, 'Amount' %>
+		<%= item_form.text_field :amount %>
+	</div>
+	<div>
+		<%= item_form.submit 'Save' %>
+	</div>
+
+<% end %>

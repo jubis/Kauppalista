@@ -1,0 +1,31 @@
+<h1>Sign up</h1>
+
+<ul class="signup-errors">
+	<% if @user.errors.any? %>
+		<% for message in @user.errors.full_messages %>
+			<li><%= message %></li>
+		<% end %>
+	<% end %>
+</ul>
+
+<%= form_for @user, :url => url_for( :controller => 'users', :action => 'create' ) do |user_form| %>
+	<div class="signup-name">
+		Your name:
+		<div><%= user_form.text_field :name %></div>
+	</div>
+	<div class="signup-email">
+		Email:
+		<div><%= user_form.text_field :email %></div>
+	</div>
+	<div class="signup-password">
+		Password:
+		<div><%= user_form.password_field :password %></div>
+	</div>
+	<div class="signup-password">
+		Confirm password:
+		<div><%= user_form.password_field :password_confirmation %></div>
+	</div>
+	<div class="signup-submit">
+		<%= user_form.submit "Sign up" %>
+	</div>
+<% end %>

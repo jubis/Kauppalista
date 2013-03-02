@@ -1,15 +1,17 @@
 Kauppalista::Application.routes.draw do
-  match "user" => "user#index"
-  get "user/index"
-  get "user/create"
+  get "sessions/login"
 
+  resources :users
+  match "signup" => "users#new"
+  match "login" => "sessions#login"
+  post "sessions/login_attempt"
 
-  post "item/save"
-  get "item/create"
-  delete "item/delete"
-  get "item/index"
+  post "items/save"
+  get "items/create"
+  delete "items/delete"
+  get "items/index"
 
-  match ":user" => "list#index"
+  # match ":user" => "list#index"
 
   get 'list/list'
   get 'list/form'
