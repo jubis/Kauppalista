@@ -1,11 +1,11 @@
-== Kauppalista ==
+== Kauppalista
 Kauppalista on yksinkertainen Ruby on Railsin päällä toimiva kauppalistasovellus.
 
-=== Yleisesti ===
+=== Yleisesti
 Kauppalistan torkaituksena on, että jokaisella käyttäjätilillä on oma yksinkertainen kauppalistansa, johon on helppo lisätä ja poistaa tavaroita. 
 
-=== Käyttöliittymä ===
+=== Käyttöliittymä
 Kauppalistassa on perinteinen nettikäyttöliittymä, joka on toteutettu HTLM5 ja JavaScriptillä. JavaScriptistä sen verran, että käytössä on jQuery kirjasto, ja suuri osa käyttöliittymän sisällöstä ladataan asynkronisesti Ajaxin avulla. Sovellus on suunniteltu pääosin silmälläpitäen mobiilikäyttöä, joten käyttöliittymä on hyvin yksinkertainen.
 
-=== Muuta ===
+=== Muuta
 Koska Railsillä sisällön hakeminen XML- tai JSON-muodossa on niin helppoa, Kauppalista tarjoaa mahdollisuuden käyttää sitä ainoastaan back-endinä ja luoda vaikkapa mobiilisovellus, joka tarjoaa oman käyttöliittymänsä. Itse asiassa olen itse kehitellyt juuri tällä tavalla sovellusta Windows Phonelle.   
