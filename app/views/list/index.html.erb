@@ -1,4 +1,13 @@
+<% content_for :head_additional do %>
+	<script type="text/javascript">
+		$(document).ready( function () {
+			listPageReady();
+		} );
+	</script>
+<% end %>
+
 <h1>Items</h1>
+<h3 class="user"><%= @current_user.name %></h3>
 <div id="list">
 </div>
 

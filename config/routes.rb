@@ -1,9 +1,9 @@
 Kauppalista::Application.routes.draw do
-  get "sessions/login"
 
   resources :users
   match "signup" => "users#new"
   match "login" => "sessions#login"
+  match "logout" => "sessions#logout"
   post "sessions/login_attempt"
 
   post "items/save"

@@ -2,11 +2,9 @@
 // All this logic will automatically be available in application.js.
 // You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-var lastForm;
-$(document).ready( function () {
-	
-	
 
+
+function listPageReady() {
 	$( '#remove-checked' ).click( function() {
 		removeChecked();
 	} );
@@ -16,8 +14,7 @@ $(document).ready( function () {
 	setFormLoading();
 
 	reloadList();
-	
-} );
+}
 
 function setFormLoading() {
 	$( '#add-new' ).click( function() {
@@ -38,24 +35,28 @@ function setChecking() {
 
 function createNewForm() {
 	$.ajax({
-		url: 'list/form/?user=' + $( '#list' ).attr( 'data-user' ),
+		url: 'list/form/',
 		type: 'GET'
 	}).done( function( response ) {
-		$( '#form' ).html( response );
-		$( '#form form' ).submit( function( event ) {
-			submitForm( event );
+		doIfLoggedIn( response, function() {
+			$( '#form' ).html( response );
+			$( '#form form' ).submit( function( event ) {
+				submitForm( event );
+			} );
+			enableAddButton( false );
 		} );
-		enableAddButton( false );
 	} );
 }
 
 function reloadList() {
 	$.ajax({
-		url: 'list/list/?user=' + $( '#list' ).attr( 'data-user' ),
+		url: 'list/list/',
 		type: 'GET'
 	}).done( function( response ) {
-		$( '#list' ).html( response );
-		setChecking();
+		doIfLoggedIn( response, function() {
+			$( '#list' ).html( response );
+			setChecking();
+		} );
 	} );
 }
 
@@ -74,11 +75,13 @@ function submitForm( event ) {
 		url: form.attr( 'action' ),
 		type: 'POST', 
 		data: data 
-	}).done( function() {
-		form.remove();
-		enableAddButton( true );
-		$( '#status' ).text( ' ' );
-		reloadList();
+	}).done( function( response ) {
+		doIfLoggedIn( response, function() {
+			form.remove();
+			enableAddButton( true );
+			$( '#status' ).text( ' ' );
+			reloadList();
+		} );
 	 } );
 
 	return false;
@@ -90,12 +93,14 @@ function removeChecked() {
 	$( 'ul#items li.checked' ).each( function() {
 		$( '#status' ).text( 'Removing...' );
 		$.ajax({ 
-			url: 'item/delete',
+			url: 'items/delete',
 			type: 'DELETE',
 			data: { id: $(this).attr( 'data-id' ) } 
-		}).done( function() {
-			reloadList();
-			$( '#status' ).text( ' ' );
+		}).done( function( response ) {
+			doIfLoggedIn( response, function() {
+				reloadList();
+				$( '#status' ).text( ' ' );
+			} );
 		});
 	} );
 	
@@ -117,5 +122,13 @@ function enableAddButton( enable ) {
 		$( '#add-new' ).removeAttr( 'disabled' );
 	} else {
 		$( '#add-new' ).attr( 'disabled', 'disabled' );
+	}
+}
+
+function doIfLoggedIn( response, job ) {
+	if( response != "login required" ) {
+		job();
+	} else {
+		document.location.href = "/login"
 	}
 }

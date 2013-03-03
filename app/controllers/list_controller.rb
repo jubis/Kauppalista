@@ -1,28 +1,19 @@
 class ListController < ApplicationController
-  before_filter :load_user
-
-  def load_user
-  	@user = User.where( :email => params[ :user ] ).first
-  end
+  before_filter :auth_user_or_redirect, :only => [ :index ]
+  before_filter :auth_user_or_render_error, :only => [ :list, :form ]
 
   def index
-    if !@user
-      @error = "Invalid user"
-    end 
   end
 
   def list
-  	if @user
-  		@items = @user.items
+  	if @current_user
+  		@items = @current_user.items
       respond_to do |format| 
         format.html { render :partial => 'list/list' }
         format.xml { render :xml => @items }
       end
   	else
-      respond_to do |format| 
-        format.html { render :text => "invalid user" }
-        format.xml { render :xml => "<error>invalid user</error>" }
-      end
+      
   	end
   end
 
