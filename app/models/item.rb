@@ -1,6 +1,7 @@
 class Item < ActiveRecord::Base
   attr_accessible :amount, :name
-  belongs_to :user
+  
+  belongs_to :list
 
-  validates :user_id, :name, :presence => true
+  validates :list_id, :name, :presence => true
 end

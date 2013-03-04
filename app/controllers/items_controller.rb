@@ -1,14 +1,14 @@
 class ItemsController < ApplicationController
   before_filter :auth_user_or_render_error
 
-  def create
+  def new
   	@item = Item.new
   end
 
-  def save
+  def create
   	item = Item.new({ :name => params[ :item ][ :name ],
                       :amount => params[ :item ][ :amount ] })
-    item.user_id = @current_user.id
+    #item.user_id = @current_user.id
   	if item.save
   		render :text => "saved succesfully"
   	else
@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
   	end
   end
 
-  def delete
+  def destroy
   	Item.find( params[ :id ] ).destroy
   	render :text => 'deleted'
   end

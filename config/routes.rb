@@ -6,12 +6,9 @@ Kauppalista::Application.routes.draw do
   match "logout" => "sessions#logout"
   post "sessions/login_attempt"
 
-  post "items/save"
-  get "items/create"
-  delete "items/delete"
-  get "items/index"
+  resources :lists
 
-  # match ":user" => "list#index"
+  resources :items
 
   get 'list/list'
   get 'list/form'

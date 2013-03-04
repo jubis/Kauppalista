@@ -1,0 +1,10 @@
+<h1>New list for <%= @current_user.name %></h1>
+<%= form_for @list, :url => url_for( :controller => 'lists', :action => 'create' ) do |list_form| %>
+	<div class="create-list-field">
+		Name for the list:
+		<div><%= list_form.text_field :name %></div>
+	<div>
+	<div>
+		<%= list_form.submit 'Create' %>
+	</div>
+<% end %>
