@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 
   def auth_user
   	unless session[ :user_id ]
-  		flash[ :error ] = "Login required"
   		false
   	else
   		@current_user = User.find session[ :user_id ]
@@ -22,6 +21,7 @@ class ApplicationController < ActionController::Base
 
   def auth_user_or_redirect
   	unless auth_user
+  		flash[ :error ] = "Login required"
   		redirect_to "/login"
   	end	
   end

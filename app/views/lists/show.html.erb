@@ -1,0 +1,21 @@
+
+
+<% content_for :head_additional do %>
+	<script type="text/javascript">
+		$(document).ready( function () {
+			listPageReady();
+		} );
+	</script>
+<% end %>
+
+<h1>List, <%= @list.name %></h1>
+<div id="list" data-list="<%= @list.id %>">
+	<%= render :partial => 'lists/list' %>
+</div>
+
+<div id="status">&nbsp;</div>
+<input id="add-new" type="button" value="Add">
+<input id="remove-checked" type="button" value="Remove checked">
+
+<div class="form" id="form">
+</div>

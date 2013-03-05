@@ -1,19 +1,21 @@
 Kauppalista::Application.routes.draw do
 
+  get "home/index"
+
   resources :users
   match "signup" => "users#new"
   match "login" => "sessions#login"
   match "logout" => "sessions#logout"
   post "sessions/login_attempt"
 
+  get 'lists/clean'
   resources :lists
 
   resources :items
 
-  get 'list/list'
   get 'list/form'
 
-  root :to => 'list#index'
+  root :to => 'home#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

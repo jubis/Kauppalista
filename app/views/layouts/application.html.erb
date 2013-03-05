@@ -11,6 +11,10 @@
 <body>
 
 <div id="wrapper">
+	<div>
+		<span class="to-home"><%= current_page?( '/' ) ? '' : link_to( 'Home', '/' ) %>
+		<span class="login"><%= @current_user ? link_to( 'Logout', '/logout' ) : link_to( 'Login', '/login' ) %></span>
+	</div>
 	<div class="notice"><%= flash[ :notice ] %></div>
 	<div class="error"><%= flash[ :error ] %></div>
 	<%= yield %>

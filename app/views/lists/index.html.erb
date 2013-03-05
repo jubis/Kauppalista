@@ -1,5 +1,5 @@
 <ul>
 <% for list in @lists %>
-	<li><%= list.id %>, <%= list.name %></li>
+	<li><%= link_to list.name, list %><%=  %></a></li>
 <% end %>
 </ul>

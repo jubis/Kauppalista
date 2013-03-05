@@ -1,0 +1,8 @@
+<%= form_for @item, :url => url_for( :controller => 'items', :action => 'create' ) do |item_form| %>
+	
+	<%= item_form.hidden_field :list_id %>
+	<%= item_form.text_field :name, :placeholder => 'name' %>
+	<%= item_form.text_field :amount, :placeholder => 'amount' %>
+	<%= item_form.submit 'Save', :id => 'save' %>
+
+<% end %>

@@ -7,7 +7,21 @@ class ListsController < ApplicationController
 
   def show
   	@list = List.find params[ :id ]
-  	render :partial => 'show'
+  	if @list.user_id == @current_user.id
+  		@items = @list.items
+      
+      	respond_to do |format| 
+        	format.html {
+        		if params[ :partial ]
+        			render :partial => 'lists/list'
+        		end
+        	}
+        	format.xml { render :xml => @items }
+      	end
+    else 
+    	flash[ :error ] = 'You are not authorized'
+    	redirect_to '/lists'
+    end
   end
 
   def create
@@ -27,5 +41,14 @@ class ListsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def clean
+  	for list in List.all
+  		unless list.user_id
+  			list.destroy
+  		end
+  	end 
+  	redirect_to '/'
   end
 end
