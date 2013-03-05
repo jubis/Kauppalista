@@ -8,7 +8,8 @@
 	</script>
 <% end %>
 
-<span><%= link_to 'Back to lists', lists_path %></span>
+<span><%= link_to 'Back to lists', lists_path %></span> 
+<span><%= link_to 'Remove this list', @list, :method => 'delete', :confirm => 'Do you really want to remove list ' + @list.name %></span>
 <h1>List, <%= @list.name %></h1>
 <div id="list" data-list="<%= @list.id %>">
 	<%= render :partial => 'lists/list' %>
