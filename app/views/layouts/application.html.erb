@@ -11,9 +11,15 @@
 <body>
 
 <div id="wrapper">
-	<div>
-		<span class="to-home"><%= current_page?( '/' ) ? '' : link_to( 'Home', '/' ) %>
-		<span class="login"><%= @current_user ? link_to( 'Logout', '/logout' ) : link_to( 'Login', '/login' ) %></span>
+	<div class="head-menu">
+		<% unless current_page? '/' %>
+			<span class="to-home"><%=  link_to( 'Home', '/' ) %></span>
+		<% end %>
+		<% unless current_page? '/login' %>
+			<span class="login">
+				<%= @current_user ? link_to( 'Logout', '/logout' ) : link_to( 'Login', '/login' ) %>
+			</span>
+		<% end %>
 	</div>
 	<div class="notice"><%= flash[ :notice ] %></div>
 	<div class="error"><%= flash[ :error ] %></div>

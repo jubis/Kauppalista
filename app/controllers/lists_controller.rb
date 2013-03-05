@@ -28,10 +28,10 @@ class ListsController < ApplicationController
   	list = List.new( params[ :list ] )
   	list.user_id = @current_user.id
   	if list.save
-  		flash[ :notice ] = 'succesfully create new list'
+  		flash[ :notice ] = 'Succesfully create new list'
   		redirect_to '/lists/' + list.id.to_s
   	else
-  		flash[ :error ] = 'creation failed'
+  		flash[ :error ] = 'Creation failed'
   		render 'lists/new'
   	end
   end
