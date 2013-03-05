@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_filter :auth_user_or_render_error
-  before_filter :list_belongs_to_current_user, :only => ( 'create', 'destroy' )
+  before_filter :list_belongs_to_current_user, :only => [ 'create', 'destroy' ]
 
   def new
   	@item = Item.new
