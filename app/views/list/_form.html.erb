@@ -1,7 +1,0 @@
-<%= form_for @item, :url => url_for( :controller => 'items', :action => 'save' ) do |item_form| %>
-
-	<%= item_form.text_field :name, :placeholder => 'name' %>
-	<%= item_form.text_field :amount, :placeholder => 'amount' %>
-	<%= item_form.submit 'Save', :id => 'save' %>
-
-<% end %>
