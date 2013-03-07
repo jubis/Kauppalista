@@ -56,6 +56,9 @@ function createNewForm() {
 			$( '#form form' ).submit( function( event ) {
 				submitForm( event );
 			} );
+			$( '#form #cancel' ).click( function( event ) {
+				removeForm( event );
+			} );
 			enableAddButton( false );
 		} );
 	} );
@@ -100,6 +103,12 @@ function submitForm( event ) {
 	 } );
 
 	return false;
+}
+
+function removeForm( event ) {
+	event.preventDefault();
+	$( '#form form' ).remove();
+	enableAddButton( true );
 }
 
 function removeChecked() {
