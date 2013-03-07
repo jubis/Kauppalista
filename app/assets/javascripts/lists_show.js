@@ -34,6 +34,18 @@ function setChecking() {
 	} );
 }
 
+function setItemDeleting() {
+	$( '.delete-item' ).click( function() {
+		itemID = $( 	this ).parent().attr( 'data-id' );
+		$.ajax({
+			url: '/items/' + itemID,
+			type: 'DELETE'
+		}).done( function() {
+			reloadList();
+		});
+	} );
+}
+
 function createNewForm() {
 	$.ajax({
 		url: '/items/new/?list_id=' + listID,
@@ -58,6 +70,7 @@ function reloadList() {
 		doIfLoggedIn( response, function() {
 			$( '#list' ).html( response );
 			setChecking();
+			setItemDeleting();
 		} );
 	} );
 }
@@ -93,11 +106,11 @@ function removeChecked() {
 	//TODO: set "loading..." message
 
 	$( 'ul#items li.checked' ).each( function() {
-		var itemsID = $(this).attr( 'data-id' );
+		var itemID = $(this).attr( 'data-id' );
 
 		$( '#status' ).text( 'Removing...' );
 		$.ajax({ 
-			url: '/items/' + itemsID,
+			url: '/items/' + itemID,
 			type: 'DELETE'
 		}).done( function( response ) {
 			doIfLoggedIn( response, function() {

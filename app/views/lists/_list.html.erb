@@ -2,7 +2,8 @@
 <% @items.each do |item| %>
 	<li data-id="<%= item.id %>">
 		<input class="check" type="checkbox">
-		<%= item.name %><%= item.amount.strip != "" ? ', ' + item.amount : '' %>
+		<span><%= item.name %><%= item.amount.strip != "" ? ', ' + item.amount : '' %></span>
+		<input type="button" class="delete-item" value="X">
 	</li>
 <% end %>
 </ul>
