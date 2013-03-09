@@ -3,6 +3,7 @@
 <head>
   <title>Kauppalista</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Give+You+Glory' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -10,20 +11,27 @@
 </head>
 <body>
 
+<header class="main">
+	<a class="frontpage" href="/"><h1>Kauppalista</h1></a>
+	
+	<% unless current_page? '/login' %>
+		<span id="login">
+			<% 
+				log_links = [ [ 'Logout', '/logout' ], [ 'Login', '/login' ] ] 
+				link = @current_user ? 0 : 1
+			%>
+			<%= link_to log_links[ link ][0], log_links[ link ][1]  %>
+		</span>
+	<% end %>
+</header>
+
 <div id="wrapper">
-	<div class="head-menu">
-		<% unless current_page? '/' %>
-			<span class="to-home"><%=  link_to( 'Home', '/' ) %></span>
-		<% end %>
-		<% unless current_page? '/login' %>
-			<span class="login">
-				<%= @current_user ? link_to( 'Logout', '/logout' ) : link_to( 'Login', '/login' ) %>
-			</span>
-		<% end %>
-	</div>
-	<div class="notice"><%= flash[ :notice ] %></div>
-	<div class="error"><%= flash[ :error ] %></div>
-	<%= yield %>
+	
+	<div id="notice"><%= flash[ :notice ] %></div>
+	<div id="error"><%= flash[ :error ] %></div>
+	<div id="page-content">
+		<%= yield %>
+	</div>	
 </div>
 
 </body>

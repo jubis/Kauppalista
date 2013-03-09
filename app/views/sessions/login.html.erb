@@ -1,11 +1,11 @@
 <h1>Login</h1>
 <%= form_tag :action => 'login_attempt' do %>
 	<div class="login-field">
-		Email:
+		<label>Email:</label>
 		<div><%= text_field_tag :email %></div>
 	</div>
 	<div class="login-field">
-		Password:
+		<label>Password:</label>
 		<div><%= password_field_tag :password %></div>
 	</div>
 	<div class="login-field submit">

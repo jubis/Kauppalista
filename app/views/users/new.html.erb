@@ -1,4 +1,6 @@
-<h1>Sign up</h1>
+<header>
+	<h1>Sign up</h1>
+</header>
 
 <ul class="signup-errors">
 	<% if @user.errors.any? %>
@@ -9,23 +11,23 @@
 </ul>
 
 <%= form_for @user, :url => url_for( :controller => 'users', :action => 'create' ) do |user_form| %>
-	<div class="signup-name">
-		Your name:
+	<div>
+		<label for"user_name">Your name:</label>
 		<div><%= user_form.text_field :name %></div>
 	</div>
-	<div class="signup-email">
-		Email:
+	<div>
+		<label for="user_email">Email:</label>
 		<div><%= user_form.text_field :email %></div>
 	</div>
-	<div class="signup-password">
-		Password:
+	<div>
+		<label for="user_password">Password:</label>
 		<div><%= user_form.password_field :password %></div>
 	</div>
-	<div class="signup-password">
-		Confirm password:
+	<div>
+		<label for="user_password_confirmation">Confirm password:</label>
 		<div><%= user_form.password_field :password_confirmation %></div>
 	</div>
-	<div class="signup-submit">
+	<div>
 		<%= user_form.submit "Sign up" %>
 		<%= link_to 'Cancel', '/', :class => 'cancel' %>
 	</div>

@@ -1,13 +1,10 @@
+
 body {
-	font-size: 150%;
+	background: gray;
 }
 
 #wrapper {
-}
-
-h1 {
-	margin: 0 0 0.1em 0;
-	font-family: 'Arial';
+	box-shadow: 0 0 10px 0px black;
 }
 
 h3.user {
@@ -15,6 +12,98 @@ h3.user {
 	font-family: 'Arial';
 }
 
-form .cancel {
-	font-size: 0.7em;
+form {
+	> div {
+		
+	}
+
+	label {
+		font-size: 1.2em;
+		margin: 1em 0 0 0;
+		display: block;
+	}
+
+	[type=text], [type=password] {
+		padding: 0.7em;
+		-moz-box-sizing: border-box;
+		width: 90%;
+		min-width: 20em;
+	}
+
+	.cancel {
+		font-size: 0.9em;
+	}
+}
+
+#error {
+	color: red;
+}
+#notice {
+	color: green;
+}
+
+h1 {
+	font-family: 'Give You Glory';
+	color: Black;
+	line-height: 1em;
+	font-size: 250%;
+	margin-left: 0.5em;
+}
+
+a {
+	color: DarkBlue;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+@media (min-device-width: 500px) {
+	body {
+	}
+
+	#wrapper {
+		width: 30em;
+		margin: 1.5em auto;
+		background-color: LightBlue;
+		min-height: 30em;
+		border-radius: 15px;
+		overflow: hidden;
+	}
+
+	header.main {
+		width: 30em;
+		margin: 0 auto;
+		color: white;
+		text-align: center;
+		position: relative;
+
+		h1 {
+			color: LightBlue;
+			font-size: 400%;
+			line-height: 1em;
+			margin: 0.5em 0 0 0;
+			text-shadow: 0 0 6px black;
+		}
+
+		a.frontpage {
+			text-decoration: none;
+		}
+
+		span {
+			position: absolute;
+			top: 0;
+			right: 0.5em;
+		}
+	}
+
+	#page-content {
+		padding: 1.5em;
+
+		header {
+			h1 {
+				font-size: 300%;
+			}
+		}
+	}
 }
