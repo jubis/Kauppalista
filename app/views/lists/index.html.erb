@@ -1,4 +1,4 @@
-<span><%= link_to 'New list', new_list_path %></span>
+<span class="new-list"><%= link_to 'New list', new_list_path %></span>
 <ul id="all-lists">
 <% for list in @lists %>
 	<li><%= link_to list.name, list %><%=  %></a></li>

@@ -4,6 +4,31 @@
 
 body.lists {
 
+	.new-list a {
+		&:hover {
+			text-decoration: none;
+		}
+
+		&:before {
+			content: "+ ";
+		}
+	}
+
+	.list-head {
+		h1 {
+			display: inline;
+		}
+
+		a {
+			color: gray;
+			margin-left: 0.5em;
+
+			&:hover {
+				color: black;
+			}
+		}
+	}
+
 	ul {
 		
 		li {
