@@ -2,41 +2,61 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-ul#items {
-	margin: 0;
-	padding: 0;
+body.lists {
 
-	li {
-		list-style-type: none;
+	ul {
+		
+		li {
+			list-style-type: none;
+		}
+
+		&#items {
+			margin: 0;
+			padding: 0;
+
+			li.checked {
+				color: gray;
+			}
+		}
+
+		&#all-lists {
+			font-size: 1.5em;
+
+			li {
+				margin: 0.3em 0;
+
+				&:before {
+					content: "-";
+					margin-right: 0.2em;
+				}
+			}
+
+			a {
+				color: black;
+				&:hover { 
+					//text-decoration: none;
+				}
+			}
+		}
 	}
 
-	li.checked {
-		color: gray;
-	}
-}
-
-#add-new {
-	margin: 1em 0;
-}
-
-#status {
-	font-size: 1em;
-	height:1em;
-}
-
-.form {
-	#save {
-		margin-top: 0.4em;
+	#add-new {
+		margin: 1em 0;
 	}
 
-	input[type=text] {
-		display:block;
-		margin-top: 5px;
+	#status {
+		font-size: 1em;
+		height:1em;
 	}
-}
 
-#new_list {
-	.cancel {
-		font-size: 0.7em;
+	.form {
+		#save {
+			margin-top: 0.4em;
+		}
+
+		input[type=text] {
+			display:block;
+			margin-top: 5px;
+		}
 	}
 }

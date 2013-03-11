@@ -1,10 +1,17 @@
+@mixin box-sizing( $size ) {
+	box-sizing: $size;
+	-webkit-box-sizing: $size;
+	-moz-box-sizing: $size;
+}
 
 body {
 	background: gray;
+	font-family: 'Sintony';
 }
 
 #wrapper {
-	box-shadow: 0 0 10px 0px black;
+	box-shadow: 0 0 0.7em 0 black inset;
+	padding: 1em;
 }
 
 h3.user {
@@ -35,27 +42,40 @@ form {
 	}
 }
 
-#error {
-	color: red;
-}
-#notice {
-	color: green;
+.flash {
+	font-size: 1.5em;
+	position: absolute;
+
+	&#error {
+		color: red;
+	}
+	&#notice {
+		color: green;
+	}
 }
 
-h1 {
-	font-family: 'Give You Glory';
+/*h1 {
 	color: Black;
 	line-height: 1em;
 	font-size: 250%;
-	margin-left: 0.5em;
-}
+}*/
 
 a {
 	color: DarkBlue;
 	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
 }
-a:hover {
-	text-decoration: underline;
+
+#page-content {
+	h1 {
+		text-overflow: "...";
+		white-space: pre;
+		width: 100%;
+		overflow: hidden;
+	}
+	
 }
 
 @media (min-device-width: 500px) {
@@ -64,6 +84,7 @@ a:hover {
 
 	#wrapper {
 		width: 30em;
+		@include box-sizing( border-box );
 		margin: 1.5em auto;
 		background-color: LightBlue;
 		min-height: 30em;
@@ -79,6 +100,7 @@ a:hover {
 		position: relative;
 
 		h1 {
+			font-family: 'Give You Glory';
 			color: LightBlue;
 			font-size: 400%;
 			line-height: 1em;
