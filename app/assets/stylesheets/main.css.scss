@@ -4,6 +4,8 @@
 	-moz-box-sizing: $size;
 }
 
+$lightblue: #ADD8E6;
+
 body {
 	background: gray;
 	font-family: 'Sintony';
@@ -85,7 +87,7 @@ a {
 		width: 30em;
 		@include box-sizing( border-box );
 		margin: 1.5em auto;
-		background-color: LightBlue;
+		background-color: $lightblue;
 		min-height: 30em;
 		border-radius: 15px;
 		overflow: hidden;
@@ -100,7 +102,7 @@ a {
 
 		h1 {
 			font-family: 'Give You Glory';
-			color: LightBlue;
+			color: $lightblue;
 			font-size: 400%;
 			line-height: 1em;
 			margin: 0.5em 0 0 0;
