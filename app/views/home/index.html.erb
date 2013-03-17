@@ -1,10 +1,21 @@
 <% if @current_user %>
 	<div class="control-panel">
-		<div><%= link_to 'My lists', :controller => 'lists', :action => 'index' %></div>
+		<div>
+			<h2><%= link_to 'My lists', :controller => 'lists', :action => 'index' %><h2>
+			<h2><%= link_to 'My profile', @current_user %><h2>
+		</div>
 	</div>
 <% else %>
 	<div class="signup">
-		<div><%= link_to 'Sign up', '/signup' %></div>
+		<div>
+			<p>Welcome to <span class="bold">Kauppalista</span>. This is a simple web application that you can
+			use as a shopping list - or actuelly, I think it does it also as a
+			todo list or any list you want it to be.</p>
+			<p>Checking items done and removing them one by one or all at once is easy and practical.
+			Also the adding is simple and fun.</p>
+			<p>Don't have profile yet? <%= link_to 'Sign up', '/signup' %></p>
+			<p>Bye the way: if you have a Windows Phone, I'am creating a <span class="bold">WP dedicated version</span> too.</p>
+		</div>
 	</div>
 <% end %>
 

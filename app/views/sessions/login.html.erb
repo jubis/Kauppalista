@@ -1,4 +1,7 @@
-<h1>Login</h1>
+<div class="login-head">
+	<h1>Login</h1>
+	<span>or <%= link_to 'Sign up', '/signup' %></span>
+</div>
 <%= form_tag :action => 'login_attempt' do %>
 	<div class="login-field">
 		<label>Email:</label>

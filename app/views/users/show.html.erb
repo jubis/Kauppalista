@@ -1,0 +1,8 @@
+<h1><%= @user.name %></h1>
+<div>
+	<p>Email: <%= @user.email %></p>
+	<div>
+		<p>Lists (<%= @lists.count %>):</p>
+		<%= render :partial => 'lists/lists' %>
+	</div>
+</div>

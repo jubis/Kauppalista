@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :auth_user_or_redirect, :only => [ 'show' ]
+
   def create
   	@user = User.new( params[ :user ] )
   	if @user.save
@@ -12,5 +14,10 @@ class UsersController < ApplicationController
 
   def new 
   	@user = User.new
+  end
+
+  def show
+    @user = @current_user
+    @lists = @current_user.lists
   end
 end

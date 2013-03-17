@@ -22,9 +22,6 @@ h3.user {
 }
 
 form {
-	> div {
-		
-	}
 
 	label {
 		font-size: 1.2em;
@@ -37,6 +34,11 @@ form {
 		-moz-box-sizing: border-box;
 		width: 90%;
 		min-width: 20em;
+	}
+
+	[type=submit], button {
+		margin-top: 1em;
+		font-size: 1.2em;
 	}
 
 	.cancel {
@@ -67,6 +69,10 @@ a {
 	&:hover {
 		text-decoration: underline;
 	}
+}
+
+.bold {
+	font-weight: bold;
 }
 
 #page-content {
