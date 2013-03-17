@@ -4,6 +4,12 @@
 	-moz-box-sizing: $size;
 }
 
+@mixin clearfix {
+	content: '.';
+	visibility: hidden;
+	clear: both;
+}
+
 $lightblue: #ADD8E6;
 
 body {
@@ -92,7 +98,7 @@ a {
 	#wrapper {
 		width: 30em;
 		@include box-sizing( border-box );
-		margin: 1.5em auto;
+		margin: 1.5em auto 0;
 		background-color: $lightblue;
 		min-height: 30em;
 		border-radius: 15px;
@@ -135,4 +141,21 @@ a {
 			}
 		}
 	}
+
+	footer {
+		width: 30em;
+		margin: 0 auto 1.5em;
+
+		&:before {
+			@include clearfix;
+		}
+
+		& > div {
+			float: right;
+			margin-right: 1em;
+			font-size: 0.8em;
+		}
+
+	}
+
 }
