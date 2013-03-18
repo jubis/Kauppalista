@@ -1,9 +1,11 @@
 <ul id="items">
-<% @items.each do |item| %>
-	<li data-id="<%= item.id %>">
-		<input class="check" type="checkbox">
-		<span><%= item.name %><%= item.amount.strip != "" ? ', ' + item.amount : '' %></span>
-		<input type="button" class="delete-item" value="X">
-	</li>
-<% end %>
+	<form>
+	<% @items.each do |item| %>
+		<li data-id="<%= item.id %>">
+			<input class="check" type="checkbox">
+			<span><%= item.name %><%= item.amount.strip != "" ? ', ' + item.amount : '' %></span>
+			<input type="button" class="delete-item" value="X">
+		</li>
+	<% end %>
+	<form>
 </ul>

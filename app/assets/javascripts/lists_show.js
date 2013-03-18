@@ -11,6 +11,13 @@ function listPageReady() {
 		removeChecked();
 	} );
 
+	$.cookie.json = true;
+	if( $.cookie( 'checked' ) == undefined ) {
+		$.cookie( 'checked', [] );
+	}
+	console.log( $.cookie( 'checked' ) );
+	//$.cookie( 'checked', [] );
+
 	setChecking();
 	setFormLoading();
 
@@ -29,14 +36,11 @@ function setChecking() {
 	$( '.check' ).click( function() {
 		checkItem( this );
 	} );
-	$( '.check' ).each( function() {
-		checkItem( this );
-	} );
 }
 
 function setItemDeleting() {
-	$( '.delete-item' ).click( function() {
-		itemID = $( 	this ).parent().attr( 'data-id' );
+	$( '.delete-item' ).click(  function() {
+		itemID = $( this ).parent().attr( 'data-id' );
 		$.ajax({
 			url: '/items/' + itemID,
 			type: 'DELETE'
@@ -74,6 +78,7 @@ function reloadList() {
 			$( '#list' ).html( response );
 			setChecking();
 			setItemDeleting();
+			checkItemsByCookie();
 		} );
 	} );
 }
@@ -133,12 +138,37 @@ function removeChecked() {
 
 function checkItem( elem ) {
 	li = $( elem ).parent();
+	itemId = parseInt( li.attr( 'data-id' ) );
+
+	var checked = $.cookie( 'checked' );
+
 	if( $( elem ).is( ':checked' ) ) {
 		li.addClass( 'checked' );
 		li.attr( 'data-checked', 'true' );
+
+		if( checked.indexOf( itemId ) == -1 ) {
+			checked.push( itemId );
+		}
 	} else {
 		li.removeClass( 'checked' );
 		li.attr( 'data-checked', 'false' );
+		
+		if( checked[ checked.indexOf( itemId ) ] ) {
+			checked.splice( checked.indexOf( itemId ), 1 );
+		}
+	}
+
+	$.cookie( 'checked', checked );
+}
+
+function checkItemsByCookie() {
+	var checked = $.cookie( 'checked' );
+	for( item in checked ) {
+		element = $( 'li[data-id="'+checked[item]+'"] input[type=checkbox]' );
+		console.log( element );
+
+		element.prop( 'checked', true );
+		checkItem( element );
 	}
 }
 
