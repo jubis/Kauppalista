@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   	if @user.save
   		flash[ :notice ] = "Sign up succesfull"
   		redirect_to "/login"
+      return
   	else
   		flash[ :notice ] = "Sign up failed"
   	end
