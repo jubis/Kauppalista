@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
       true
   	elsif auth_api_user && verify_user_access
   		@current_user = User.find params[ :user ]
-      #render :text => 'user authenticated'
       true
     else
       false

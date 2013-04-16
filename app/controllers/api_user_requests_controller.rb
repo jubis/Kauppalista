@@ -1,5 +1,5 @@
 class ApiUserRequestsController < ApplicationController
-  before_filter :auth_user_or_redirect, :only => 'index'
+  before_filter :auth_user_or_render_error
   before_filter :auth_user_for_this_request, :only => [ 'accept', 'deny' ]
 
   def index
@@ -7,9 +7,12 @@ class ApiUserRequestsController < ApplicationController
   end
 
   def auth_user_for_this_request
-  	@request = ApiUserRequest.find( params[ :id ] )
-
-  	## TODO: check authentication
+  	request = ApiUserRequest.find( params[ :id ] )
+  	unless request.user_id == @current_user.id
+  		render :text => 'this is not your api user request'
+  	else
+  		@request = request
+  	end
   end
 
   def accept
