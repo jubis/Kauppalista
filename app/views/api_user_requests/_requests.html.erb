@@ -1,0 +1,9 @@
+<ul>
+<% for request in @current_user.api_user_requests.where( :status => 'waiting' ).order( :id ) %>
+	<li data-id="<%= request.id %>">
+		<span>by <%= request.api_user.name %></span><span>, status: <%= request.status %></span>
+		<input type="button" class="accept-request" value="Accept">
+		<input type="button" class="deny-request" value="Deny">
+	</li>
+<% end %>
+</ul>
