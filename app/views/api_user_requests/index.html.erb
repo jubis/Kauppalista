@@ -1,0 +1,6 @@
+<h1>All requests for you from API users</h1>
+<ul>
+<% for request in @requests %>
+	<li><%= request.status %>, <%= request.id %></li>
+<% end %>
+</ul>
