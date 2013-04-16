@@ -19,6 +19,10 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    unless Item.exists?( params[ :id ] )
+      render :text => 'invalid user id'
+      return
+    end
     item = Item.find( params[ :id ] )
     if list_belongs_to_current_user( item )
       item.destroy

@@ -1,5 +1,13 @@
 Kauppalista::Application.routes.draw do
 
+  get "api_user_requests/index"
+
+  get "api_user_requests/accept"
+
+  get "api_user_requests/deny"
+
+  get "api_user/create"
+
   get "home/index"
 
   resources :users
@@ -13,7 +21,15 @@ Kauppalista::Application.routes.draw do
 
   resources :items
 
-  get 'list/form'
+  #get 'list/form'
+
+  get 'api_users/create'
+  get 'api_users/index'
+  match 'api_users/:api_user_id/request_access' => 'api_users#request_user_access', :via => :get
+
+  match 'requests' => 'api_user_requests#index'
+  match 'requests/:id/accept' => 'api_user_requests#accept'
+  match 'requests/:id/deny' => 'api_user_requests#deny'
 
   root :to => 'home#index'
   # The priority is based upon order of creation:

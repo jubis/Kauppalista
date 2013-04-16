@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
 
   has_many :lists
+  has_many :api_user_requests
   
   validates :email, :name, :password, :presence => true
   validates :email, :uniqueness => true
@@ -27,7 +28,6 @@ class User < ActiveRecord::Base
   end
 
   def password_match( login_password )
-  	self.password == BCrypt::Engine.hash_secret( login_password,
-  												 self.salt )
+  	self.password == BCrypt::Engine.hash_secret( login_password, self.salt )
   end
 end

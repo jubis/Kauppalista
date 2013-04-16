@@ -1,6 +1,10 @@
 <% if @current_user %>
 	<div class="control-panel">
 		<div>
+			<% if @current_user.api_user_requests.where( :status => 'waiting' ).count > 0 %>
+			<h3>Somebody wants to access your lists through an API:</h3>
+				<div id="requests"><%= render :partial => 'api_user_requests/requests' %></div>
+			<% end %>
 			<h2><%= link_to 'My lists', :controller => 'lists', :action => 'index' %><h2>
 			<h2><%= link_to 'My profile', @current_user %><h2>
 		</div>

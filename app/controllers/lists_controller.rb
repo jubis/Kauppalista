@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_filter :auth_user_or_redirect
+  before_filter :auth_user_according_to_format
   before_filter :auth_user_for_this_list, :only => [ 'show', 'destroy' ]
 
   def auth_user_for_this_list
@@ -11,7 +11,7 @@ class ListsController < ApplicationController
   				flash[ :error ] = 'Trying to access list without authorization'
     			redirect_to '/lists'
     		}
-    		format.xml { render :text => '<error>unauthorized access to list</error>' }
+    		format.xml { render :xml => xml_error( 'unauthorized access to list' ) }
     	end
     else
     	@list = list
@@ -21,10 +21,14 @@ class ListsController < ApplicationController
 
   def index
   	@lists = @current_user.lists
+    respond_to do |format|
+        format.html 
+        format.xml { render :xml => @lists }
+    end
   end
 
   def show
-	@items = @list.items
+	 @items = @list.items
   
   	respond_to do |format| 
     	format.html {
@@ -32,7 +36,9 @@ class ListsController < ApplicationController
     			render :partial => 'lists/list'
     		end
     	}
-    	format.xml { render :xml => @items }
+    	format.xml {
+        render :xml => @items 
+      }
   	end
   end
 
